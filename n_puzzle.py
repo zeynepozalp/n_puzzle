@@ -12,6 +12,7 @@ class Node:
         self.h = h
         self.f = f
         self.parent = parent
+        
     def isGoal(self):
         return self.tiles == goal.tiles
 
@@ -86,13 +87,11 @@ class Node:
                 return i
         return None
 
-
 start = Node()
 goal = Node()
 method = ""
 m = 0
 n = 0
-
 
 def getInput():
     global method, m, n, goal, start
@@ -109,7 +108,6 @@ def getInput():
     goal.tiles = tiles
     start.hgf()
 
-
 def findOpt(lst):
     opt = lst[0]
     index = 0
@@ -119,15 +117,6 @@ def findOpt(lst):
             index = i
     return opt, index
 
-
-def findOpt2(lst):
-    opt = lst[0]
-    for i in lst:  # type: Node
-        if i.f < opt.f:
-            opt = i
-    return opt
-
-
 def findGoal(str): #find the correct place of a tile in goal
     global goal
     tiles = goal.tiles
@@ -135,7 +124,6 @@ def findGoal(str): #find the correct place of a tile in goal
         for j in range(n):
             if tiles[i][j] == str:
                 return i, j
-
 
 def Astar():
     front = [start]
@@ -158,7 +146,6 @@ def Astar():
 
     return None
 
-
 def IDAstar():
     fmax = start.f
     while(1):
@@ -170,7 +157,6 @@ def IDAstar():
         if(newfmax!=None):
             fmax = newfmax
     return None
-
 
 def limitedSearch(node, limit):
     if node.f > limit:
@@ -186,7 +172,6 @@ def limitedSearch(node, limit):
         if newLimit < min:
             min = newLimit
     return None, min
-
 
 def printOutput(sol):
     global goal, n
@@ -204,7 +189,6 @@ def printOutput(sol):
                 else:
                     print (state.tiles)[j][k]
         print "\n",
-
 
 def solve():
     global method, m, n, goal, start
