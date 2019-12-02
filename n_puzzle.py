@@ -49,7 +49,7 @@ class Node:
             self.g = self.parent.g + 1
             self.f = self.g + sum
 
-    def genCildren(self):
+    def genChildren(self):
         tiles = self.tiles
         x, y = self.findBlank()
         newTiles = []
@@ -140,7 +140,7 @@ def Astar():
 
         if(x.isExp(exp) == None and x.f<=m):
             exp.append(x)
-            successors = x.genCildren()
+            successors = x.genChildren()
             for i in successors:
                 front.append(i)
 
@@ -163,7 +163,7 @@ def limitedSearch(node, limit):
         return None, node.f
     if node.isGoal():
         return node, limit
-    successors = node.genCildren()
+    successors = node.genChildren()
     min = float('inf')
     for succ in successors:
         newNode, newLimit = limitedSearch(succ, limit)
